@@ -24,7 +24,7 @@ class RegisterView extends GetView<RegisterController> {
               const SizedBox(height: 30),
 
               const Text(
-                "Create Account",
+                "Buat Akun Baru",
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
