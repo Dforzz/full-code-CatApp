@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "34463995348",
+    "project_id": "sekolahapp-a7f85",
+    "storage_bucket": "sekolahapp-a7f85.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34463995348:android:6c7f08f5395a9eb2193241",
+        "android_client_info": {
+          "package_name": "com.example.praktikum_mobile_dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByuF7SsYkkgQQSgcwVf2uYyhLYwU84Aio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34463995348:android:6cbc451696f3ca38193241",
+        "android_client_info": {
+          "package_name": "sekolah.sekolah"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByuF7SsYkkgQQSgcwVf2uYyhLYwU84Aio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
