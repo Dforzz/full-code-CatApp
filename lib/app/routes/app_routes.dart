@@ -10,6 +10,9 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const TAMBAH_KELAS = _Paths.TAMBAH_KELAS;
   static const DETAIL_KELAS = _Paths.DETAIL_KELAS;
+  static const JADWAL_KELAS = _Paths.JADWAL_KELAS;
+  static const EDIT_KELAS = _Paths.EDIT_KELAS;
+  static const YOUTUBE = _Paths.YOUTUBE;
 }
 
 abstract class _Paths {
@@ -21,4 +24,7 @@ abstract class _Paths {
   static const HOME = '/home';
   static const TAMBAH_KELAS = '/tambah-kelas';
   static const DETAIL_KELAS = '/detail-kelas';
+  static const JADWAL_KELAS = '/jadwal-kelas';
+  static const EDIT_KELAS = '/edit-kelas';
+  static const YOUTUBE = '/youtube';
 }

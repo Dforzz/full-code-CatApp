@@ -11,193 +11,170 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Daftar Kelas')),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Get.toNamed(Routes.TAMBAH_KELAS),
-        icon: const Icon(Icons.add),
-        label: const Text('Tambah Kelas'),
+      backgroundColor: const Color(0xFFF4F7F6),
+      appBar: AppBar(
+        title: const Text(
+          'Portal Mahasiswa',
+          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Get.offAllNamed(Routes.LOGIN);
+            },
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+          ),
+        ],
       ),
       body: SafeArea(
-        child: Container(
-          color: const Color(0xFFF5F5F5),
-          padding: const EdgeInsets.all(24),
+        child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // HEADER
-              const Text(
-                "Welcome",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4037),
-                ),
-              ),
-
-              const SizedBox(height: 6),
-
-              Text(
-                user?.email ?? "User",
-                style: const TextStyle(fontSize: 16, color: Colors.black54),
-              ),
-
-              const SizedBox(height: 30),
-
-              // PROFILE CARD
+              // Hero Header Section
               Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFB8C00), Color(0xFFFFB74D)],
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF1A237E), // Deep Indigo
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.orange.withOpacity(0.3),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
                 ),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundColor: Colors.white,
-                      child: Text(
-                        user?.email?.substring(0, 1).toUpperCase() ?? "U",
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFFB8C00),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.school, size: 35, color: Color(0xFF1A237E)),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: Text(
-                        "Akun Aktif",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              // STATUS CARD
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 6,
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    children: [
-                      Icon(
-                        user?.emailVerified == true
-                            ? Icons.verified_rounded
-                            : Icons.warning_amber_rounded,
-                        size: 32,
-                        color: user?.emailVerified == true
-                            ? Colors.green
-                            : const Color(0xFFFB8C00),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Text(
-                          user?.emailVerified == true
-                              ? "Email sudah diverifikasi"
-                              : "Email belum diverifikasi",
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Selamat Datang!',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                              Text(
+                                'Mahasiswa Berprestasi',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              Expanded(
-                child: Obx(() {
-                  if (controller.isLoading.value) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  if (controller.semuaKelas.isEmpty) {
-                    return const Center(child: Text('Belum ada data kelas'));
-                  }
-
-                  return ListView.separated(
-                    padding: EdgeInsets.zero,
-                    itemCount: controller.semuaKelas.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      final d = controller.semuaKelas[index];
-                      final fotoDosen = d['foto_dosen'] as String?;
-
-                      return ListTile(
-                        onTap: () =>
-                            Get.toNamed(Routes.DETAIL_KELAS, arguments: d),
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.white,
-                          backgroundImage:
-                              (fotoDosen != null && fotoDosen.isNotEmpty)
-                              ? NetworkImage(fotoDosen)
-                              : null,
-                          child: (fotoDosen == null || fotoDosen.isEmpty)
-                              ? Text(
-                                  (d['pengampu'] as String?)
-                                          ?.substring(0, 1)
-                                          .toUpperCase() ??
-                                      'K',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFFB8C00),
-                                  ),
-                                )
-                              : null,
-                        ),
-                        title: Text(d['nama_kelas'] ?? '-'),
-                        subtitle: Text(
-                          '${d['ruangan'] ?? '-'} | ${d['jam'] ?? '-'}',
-                        ),
-                        trailing: Text(d['pengampu'] ?? '-'),
-                      );
-                    },
-                  );
-                }),
-              ),
-
-              const SizedBox(height: 16),
-
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton.icon(
-                  onPressed: _logout,
-                  icon: const Icon(Icons.logout),
-                  label: const Text("Logout"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5D4037),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      ],
                     ),
-                  ),
+                  ],
                 ),
               ),
+              
+              const SizedBox(height: 24),
+              
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Layanan Akademik',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1A237E),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    
+                    // Menu Grid / List
+                    _buildMenuCard(
+                      title: 'Jadwal Kuliah',
+                      subtitle: 'Lihat daftar kelas dan waktu',
+                      icon: Icons.calendar_month,
+                      color: const Color(0xFF1A237E), 
+                      onTap: () => Get.toNamed(Routes.JADWAL_KELAS),
+                    ),
+                    const SizedBox(height: 16),
+                    _buildMenuCard(
+                      title: 'Materi Edukasi',
+                      subtitle: 'Video pembelajaran interaktif',
+                      icon: Icons.video_library,
+                      color: const Color(0xFFFFB300), // Academic Gold
+                      onTap: () => Get.toNamed(Routes.YOUTUBE),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuCard({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Icon(icon, color: color, size: 36),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.arrow_forward_ios, color: Colors.black26),
             ],
           ),
         ),

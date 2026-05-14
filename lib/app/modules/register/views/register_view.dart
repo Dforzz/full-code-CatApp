@@ -28,7 +28,7 @@ class RegisterView extends GetView<RegisterController> {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4037),
+                  color: Color(0xFF1565C0), // Biru
                 ),
               ),
 
@@ -55,9 +55,23 @@ class RegisterView extends GetView<RegisterController> {
 
               const SizedBox(height: 30),
 
-              ElevatedButton(
-                onPressed: controller.register,
-                child: const Text("Register"),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: controller.register,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1565C0), // Biru
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: const Text(
+                    "Register",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
 
               const SizedBox(height: 10),
@@ -66,7 +80,7 @@ class RegisterView extends GetView<RegisterController> {
                 onPressed: () => Get.back(),
                 child: const Text(
                   "Sudah punya akun? Login",
-                  style: TextStyle(color: Color(0xFF5D4037)),
+                  style: TextStyle(color: Color(0xFF1565C0)), // Biru
                 ),
               ),
             ],

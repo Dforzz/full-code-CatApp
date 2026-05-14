@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/detail_kelas_controller.dart';
 
+
 class DetailKelasView extends GetView<DetailKelasController> {
   const DetailKelasView({super.key});
 
@@ -21,6 +22,12 @@ class DetailKelasView extends GetView<DetailKelasController> {
         centerTitle: true,
         actions: [
           IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {
+              Get.toNamed('/edit-kelas', arguments: data);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
               // Dialog Konfirmasi Hapus
@@ -30,8 +37,8 @@ class DetailKelasView extends GetView<DetailKelasController> {
                 textCancel: "Batal",
                 textConfirm: "Hapus",
                 confirmTextColor: Colors.white,
-                buttonColor: Colors.red,
-                cancelTextColor: Colors.black,
+                buttonColor: const Color(0xFFE53935),
+                cancelTextColor: const Color(0xFF1A237E),
                 onConfirm: () {
                   Get.back(); // Tutup dialog
                   // Menggunakan properti id jika tersedia, kosongkan jika tidak ada
@@ -56,22 +63,42 @@ class DetailKelasView extends GetView<DetailKelasController> {
                 // FOTO DOSEN
                 Hero(
                   tag: 'foto_$namaKelas',
-                  child: CircleAvatar(
-                    radius: 60,
-                    backgroundColor: Colors.white,
-                    backgroundImage: (fotoDosen != null && fotoDosen.isNotEmpty)
-                        ? NetworkImage(fotoDosen)
-                        : null,
-                    child: (fotoDosen == null || fotoDosen.isEmpty)
-                        ? Text(
-                            pengampu.isNotEmpty ? pengampu.substring(0, 1).toUpperCase() : 'D',
-                            style: const TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFB8C00),
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: (fotoDosen != null && fotoDosen.isNotEmpty)
+                        ? ClipOval(
+                            child: Image.network(
+                              fotoDosen,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Center(
+                                  child: Text(
+                                    pengampu.isNotEmpty ? pengampu.substring(0, 1).toUpperCase() : 'D',
+                                    style: const TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF1A237E),
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           )
-                        : null,
+                        : Center(
+                            child: Text(
+                              pengampu.isNotEmpty ? pengampu.substring(0, 1).toUpperCase() : 'D',
+                              style: const TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1A237E),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -82,7 +109,7 @@ class DetailKelasView extends GetView<DetailKelasController> {
                   style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF5D4037),
+                    color: Color(0xFF1A237E), // Deep Indigo
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -132,10 +159,10 @@ class DetailKelasView extends GetView<DetailKelasController> {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFFFB8C00).withOpacity(0.1),
+            color: const Color(0xFF1A237E).withOpacity(0.1), // Deep Indigo
             borderRadius: BorderRadius.circular(15),
           ),
-          child: Icon(icon, color: const Color(0xFFFB8C00)),
+          child: Icon(icon, color: const Color(0xFF1A237E)), // Deep Indigo
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -155,7 +182,7 @@ class DetailKelasView extends GetView<DetailKelasController> {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4037),
+                  color: Color(0xFF1A237E), // Deep Indigo
                 ),
               ),
             ],

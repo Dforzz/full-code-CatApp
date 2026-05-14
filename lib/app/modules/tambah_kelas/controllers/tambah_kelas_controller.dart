@@ -3,29 +3,29 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TambahKelasController extends GetxController {
-  final namaKelasC = TextEditingController();
-  final ruanganC = TextEditingController();
-  final jamC = TextEditingController();
-  final pengampuC = TextEditingController();
-  final fotoDosenC = TextEditingController();
+  final namaKelas = TextEditingController();
+  final ruangan = TextEditingController();
+  final jam = TextEditingController();
+  final pengampu = TextEditingController();
+  final fotoDosen = TextEditingController();
 
   final isLoading = false.obs;
 
   @override
   void onClose() {
-    namaKelasC.dispose();
-    ruanganC.dispose();
-    jamC.dispose();
-    pengampuC.dispose();
-    fotoDosenC.dispose();
+    namaKelas.dispose();
+    ruangan.dispose();
+    jam.dispose();
+    pengampu.dispose();
+    fotoDosen.dispose();
     super.onClose();
   }
 
   Future<void> simpanKelas() async {
-    if (namaKelasC.text.isEmpty ||
-        ruanganC.text.isEmpty ||
-        jamC.text.isEmpty ||
-        pengampuC.text.isEmpty) {
+    if (namaKelas.text.isEmpty ||
+        ruangan.text.isEmpty ||
+        jam.text.isEmpty ||
+        pengampu.text.isEmpty) {
       Get.snackbar('Error', 'Semua kolom wajib diisi kecuali Foto Dosen',
           backgroundColor: Colors.red, colorText: Colors.white);
       return;
@@ -34,11 +34,11 @@ class TambahKelasController extends GetxController {
     isLoading.value = true;
     try {
       await FirebaseFirestore.instance.collection('kelas').add({
-        'nama_kelas': namaKelasC.text,
-        'ruangan': ruanganC.text,
-        'jam': jamC.text,
-        'pengampu': pengampuC.text,
-        'foto_dosen': fotoDosenC.text,
+        'nama_kelas': namaKelas.text,
+        'ruangan': ruangan.text,
+        'jam': jam.text,
+        'pengampu': pengampu.text,
+        'foto_dosen': fotoDosen.text,
         'created_at': FieldValue.serverTimestamp(),
       });
       Get.back();

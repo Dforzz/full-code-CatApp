@@ -25,11 +25,11 @@ class LoginView extends GetView<LoginController> {
               const SizedBox(height: 30),
 
               const Text(
-                "Welcome Back",
+                "Portal Akademik",
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4037),
+                  color: Color(0xFF1A237E), // Deep Indigo
                 ),
               ),
 
@@ -56,26 +56,41 @@ class LoginView extends GetView<LoginController> {
 
               const SizedBox(height: 30),
 
-              ElevatedButton(
-                onPressed: controller.login,
-                child: const Text("Login"),
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: controller.login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1A237E), // Deep Indigo
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 3,
+                  ),
+                  child: const Text(
+                    "Login Mahasiswa",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1),
+                  ),
+                ),
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 16),
 
               TextButton(
                 onPressed: () => Get.toNamed(Routes.REGISTER),
                 child: const Text(
-                  "Belum punya akun? Register",
-                  style: TextStyle(color: Color(0xFF5D4037)),
+                  "Mahasiswa Baru? Daftar di sini",
+                  style: TextStyle(color: Color(0xFF1A237E), fontWeight: FontWeight.w600), // Deep Indigo
                 ),
               ),
 
               TextButton(
                 onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
                 child: const Text(
-                  "Lupa Password?",
-                  style: TextStyle(color: Color(0xFFFB8C00)),
+                  "Lupa Password Portal?",
+                  style: TextStyle(color: Color(0xFFFFB300), fontWeight: FontWeight.bold), // Academic Gold
                 ),
               ),
             ],

@@ -12,7 +12,7 @@ class ForgotPasswordController extends GetxController {
       Get.snackbar(
         'Error',
         'Email tidak boleh kosong',
-        backgroundColor: const Color(0xFF5D4037),
+        backgroundColor: const Color(0xFFE53935), // Merah untuk error
         colorText: Colors.white,
       );
       return;
@@ -28,7 +28,7 @@ class ForgotPasswordController extends GetxController {
       Get.snackbar(
         'Success',
         'Link reset dikirim ke ${emailController.text.trim()}',
-        backgroundColor: const Color(0xFFFB8C00),
+        backgroundColor: const Color(0xFF1565C0), // Biru
         colorText: Colors.white,
       );
 
@@ -38,7 +38,7 @@ class ForgotPasswordController extends GetxController {
       Get.snackbar(
         'Error',
         e.message ?? 'Gagal kirim email reset',
-        backgroundColor: const Color(0xFF5D4037),
+        backgroundColor: const Color(0xFFE53935), // Merah untuk error
         colorText: Colors.white,
       );
     } finally {

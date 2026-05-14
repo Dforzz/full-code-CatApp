@@ -3,10 +3,14 @@ import 'package:get/get.dart';
 import '../middleware/auth_middleware.dart';
 import '../modules/detail_kelas/bindings/detail_kelas_binding.dart';
 import '../modules/detail_kelas/views/detail_kelas_view.dart';
+import '../modules/edit_kelas/bindings/edit_kelas_binding.dart';
+import '../modules/edit_kelas/views/edit_kelas_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/jadwal_kelas/bindings/jadwal_kelas_binding.dart';
+import '../modules/jadwal_kelas/views/jadwal_kelas_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -15,6 +19,8 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/tambah_kelas/bindings/tambah_kelas_binding.dart';
 import '../modules/tambah_kelas/views/tambah_kelas_view.dart';
+import '../modules/youtube/bindings/youtube_binding.dart';
+import '../modules/youtube/views/youtube_view.dart';
 
 part 'app_routes.dart';
 
@@ -54,6 +60,21 @@ class AppPages {
       name: _Paths.DETAIL_KELAS,
       page: () => const DetailKelasView(),
       binding: DetailKelasBinding(),
+    ),
+    GetPage(
+      name: _Paths.JADWAL_KELAS,
+      page: () => const JadwalKelasView(),
+      binding: JadwalKelasBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_KELAS,
+      page: () => const EditKelasView(),
+      binding: EditKelasBinding(),
+    ),
+    GetPage(
+      name: _Paths.YOUTUBE,
+      page: () => const YoutubeView(),
+      binding: YoutubeBinding(),
     ),
   ];
 }

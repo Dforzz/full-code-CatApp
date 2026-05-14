@@ -30,7 +30,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5D4037),
+                  color: Color(0xFF1565C0), // Biru
                 ),
               ),
 
@@ -68,7 +68,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                           ? null
                           : controller.resetPassword,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFB8C00),
+                        backgroundColor: const Color(0xFFE53935), // Merah
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -100,7 +100,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 child: const Text(
                   "Kembali ke Login",
                   style: TextStyle(
-                    color: Color(0xFF5D4037),
+                    color: Color(0xFF1565C0), // Biru
                     fontWeight: FontWeight.w600,
                   ),
                 ),

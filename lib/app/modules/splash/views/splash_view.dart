@@ -15,7 +15,7 @@ class SplashView extends GetView<SplashController> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFFFB8C00), Color(0xFF5D4037)],
+            colors: [Color(0xFF1565C0), Color(0xFFE53935)], // Biru dan Merah
           ),
         ),
         child: SafeArea(
@@ -29,7 +29,7 @@ class SplashView extends GetView<SplashController> {
                 const SizedBox(height: 30),
 
                 const Text(
-                  "CatApp",
+                  "KelasKu ID",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -42,7 +42,7 @@ class SplashView extends GetView<SplashController> {
                 const SizedBox(height: 10),
 
                 const Text(
-                  "Integrasi Firebse Auth dengan Flutter",
+                  "Aplikasi Manajemen Jadwal Kelas",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
@@ -84,7 +84,7 @@ class SplashView extends GetView<SplashController> {
                                   onPressed: controller.goToLogin,
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
-                                    foregroundColor: const Color(0xFF5D4037),
+                                    foregroundColor: const Color(0xFF1565C0), // Biru
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
