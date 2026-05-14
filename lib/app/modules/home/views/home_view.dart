@@ -8,15 +8,8 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
-  Future<void> _logout() async {
-    await FirebaseAuth.instance.signOut();
-    Get.offAllNamed('/login');
-  }
-
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(title: const Text('Daftar Kelas')),
       floatingActionButton: FloatingActionButton.extended(
